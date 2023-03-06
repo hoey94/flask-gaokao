@@ -18,6 +18,16 @@ IGNORE_CHECK_LOGIN_URLS = [
     "^/api"
 ]
 
+# 分页
+PAGE_SIZE = 5
+PAGE_DISPLAY = 10
+
+# 分类字段
+STATUS_MAPPING = {
+    "1": "正常",
+    "0": "已删除"
+}
+
 # 域名
 APP = {
     'domain': 'http://10.1.44.246:8999/'

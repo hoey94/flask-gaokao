@@ -5,7 +5,7 @@ from application import app
 from common.models.User import User
 from common.libs.user.UserService import UserService
 from common.libs.UrlManager import UrlManager
-# from common.libs.LogService import LogService
+from common.libs.LogService import LogService
 
 
 @app.before_request
@@ -42,7 +42,7 @@ def before_request():
         g.current_user = user_info
 
     # 添加日志
-    # LogService.addAccessLog()
+    LogService.addAccessLog()
     return
 
 
