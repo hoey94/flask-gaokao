@@ -28,6 +28,12 @@ STATUS_MAPPING = {
     "0": "已删除"
 }
 
+# 小程序相关设置
+MINA_APP= {
+    'appid': 'wxe918e2c16536c415',
+    'appkey': 'cc45f1f5dd56c7764b350f4100e0d0a2',
+}
+
 # 域名
 APP = {
     'domain': 'http://10.1.44.246:8999/'

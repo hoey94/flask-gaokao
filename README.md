@@ -1520,6 +1520,85 @@ ______
 
 ------
 
+### 3、微信小程序会员登陆
+
+![image-20230307105026560](C:\Users\13939\AppData\Roaming\Typora\typora-user-images\image-20230307105026560.png)
+
+#### 1、`controller`层创建`api`包
+
+#### 2、`__init__.py`入口文件
+
+```python
+from flask import Blueprint
+
+route_api = Blueprint('api_page', __name__)
+
+
+@route_api.route("/")
+def index():
+    return "Mina Api V1.0"
+```
+
+#### 3、创建`member`、`oauth_member_bind`、`wx_share_history`表
+
+```sql 
+DROP TABLE IF EXISTS `member`;
+
+CREATE TABLE `member` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `nickname` varchar(100) NOT NULL DEFAULT '' COMMENT '会员名',
+  `mobile` varchar(11) NOT NULL DEFAULT '' COMMENT '会员手机号码',
+  `sex` tinyint(1) NOT NULL DEFAULT '0' COMMENT '性别 1：男 2：女',
+  `avatar` varchar(200) NOT NULL DEFAULT '' COMMENT '会员头像',
+  `salt` varchar(32) NOT NULL DEFAULT '' COMMENT '随机salt',
+  `reg_ip` varchar(100) NOT NULL DEFAULT '' COMMENT '注册ip',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 1：有效 0：无效',
+  `vip` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否购买vip',
+  `updated_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最后一次更新时间',
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='会员表';
+
+DROP TABLE IF EXISTS `oauth_member_bind`;
+
+CREATE TABLE `oauth_member_bind` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `member_id` int(11) NOT NULL DEFAULT '0' COMMENT '会员id',
+  `client_type` varchar(20) NOT NULL DEFAULT '' COMMENT '客户端来源类型。qq,weibo,weixin',
+  `type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '类型 type 1:wechat ',
+  `openid` varchar(80) NOT NULL DEFAULT '' COMMENT '第三方id',
+  `unionid` varchar(100) NOT NULL DEFAULT '',
+  `extra` text NOT NULL COMMENT '额外字段',
+  `updated_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_type_openid` (`type`,`openid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='第三方登录绑定关系';
+
+
+DROP TABLE IF EXISTS `wx_share_history`;
+
+CREATE TABLE `wx_share_history` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `member_id` int(11) NOT NULL DEFAULT '0' COMMENT '会员id',
+  `share_url` varchar(200) NOT NULL DEFAULT '' COMMENT '分享的页面url',
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='微信分享记录';
+```
+
+#### 4、创建`member`、`oauth_member_bind`、`wx_share_history`模型
+
+```bash
+flask-sqlacodegen "mysql://root:123456@127.0.0.1/gaokao" --table member --outfile "common/models/member/Member.py" --flask
+
+flask-sqlacodegen "mysql://root:123456@127.0.0.1/gaokao" --table oauth_member_bind --outfile "common/models/member/OauthMemberBind.py" --flask
+
+flask-sqlacodegen "mysql://root:123456@127.0.0.1/gaokao" --table wx_share_history --outfile "common/models/member/WxShareHistory.py" --flask
+```
+
+
+
 
 
    
