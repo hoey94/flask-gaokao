@@ -22,6 +22,9 @@ IGNORE_CHECK_LOGIN_URLS = [
 PAGE_SIZE = 5
 PAGE_DISPLAY = 10
 
+# 小程序分页
+MINAPP_PAGE_SIZE = 20
+
 # 分类字段
 STATUS_MAPPING = {
     "1": "正常",
