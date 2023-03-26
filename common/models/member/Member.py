@@ -1,6 +1,7 @@
 # coding: utf-8
 from application import db
 
+
 class Member(db.Model):
     __tablename__ = 'member'
 
@@ -20,3 +21,28 @@ class Member(db.Model):
     order = db.Column(db.String(15), nullable=False, server_default=db.FetchedValue())
     grade = db.Column(db.String(15), nullable=False, server_default=db.FetchedValue())
     year = db.Column(db.String(5), nullable=False, server_default=db.FetchedValue())
+
+    @property
+    def sex_desc(self):
+        sex_mapping = {
+            "0": "未知",
+            "1": "男",
+            "2": "女"
+        }
+        return sex_mapping[str(self.sex)]
+
+    @property
+    def classify_desc(self):
+        classify_mapping = {
+            "0": "理科",
+            "1": "文科",
+        }
+        return classify_mapping[str(self.classify)]
+
+    @property
+    def normal_desc(self):
+        classify_mapping = {
+            "0": "艺术生",
+            "1": "普通生",
+        }
+        return classify_mapping[str(self.normal)]

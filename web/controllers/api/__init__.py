@@ -4,7 +4,11 @@ route_api = Blueprint('api_page', __name__)
 from web.controllers.api.Member import *
 from web.controllers.api.Collage import *
 from web.controllers.api.Subject import *
-from web.controllers.api.Batch import Batch
+from web.controllers.api.Plan import *
+from web.controllers.api.Batch import *
+from web.controllers.api.Level import *
+from web.controllers.api.Search import *
+from web.controllers.api.Application import *
 
 
 @route_api.route("/")

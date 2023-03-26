@@ -135,7 +135,6 @@ def getCollageList():
     offset = page * app.config['MINAPP_PAGE_SIZE']
     limit = app.config['MINAPP_PAGE_SIZE'] * (page + 1)
 
-    app.logger.debug(f'offset: {offset}, limit: {limit}')
     collage_list = query.all()[offset:limit]
 
     if not collage_list:
