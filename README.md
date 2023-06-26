@@ -231,7 +231,7 @@
      import re
      
      from application import app
-     from common.models.User import User
+     from config.User import User
      from common.libs.user.UserService import UserService
      from common.libs.UrlManager import UrlManager
      # from common.libs.LogService import LogService

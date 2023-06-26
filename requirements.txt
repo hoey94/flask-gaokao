@@ -6,3 +6,10 @@ flask-script==2.0.6
 flask-sqlacodegen==1.1.6.1
 inflect==2.1.0
 requests==2.28.1
+markupsafe==2.0.1
+itsdangerous==2.0.1
+werkzeug==0.16.1
+sqlalchemy-serializer==1.4.1
+numpy==1.24.3
+pandas
+PyMySQL==1.1.0

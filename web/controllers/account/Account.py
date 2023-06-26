@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Blueprint, render_template, request, redirect, jsonify
+from flask import Blueprint, request, redirect, jsonify
 from sqlalchemy import or_
 
 from common.libs.Helper import ops_render, iPagination, getCurrentDate

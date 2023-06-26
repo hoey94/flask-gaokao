@@ -31,22 +31,31 @@ var user_login_ops = {
                 success: function (res) {
                     btn_target.removeClass("disabled");
                     var callback = null;
-                    if (res.code == 200) {
+                    // if (res.code == 200) {
                         callback = function () {
                             window.location.href = common_ops.buildUrl("/");
                         }
-                    }
+                    // }
                     common_ops.alert(res.msg, callback);
                 },
                 error: function (error) {
-                    btn_target.removeClass("disabled");
+                    // btn_target.removeClass("disabled");
+                    // var callback = null;
+                    // if (res.code == -1) {
+                    //     callback = function () {
+                    //         window.location.href = window.location.href;
+                    //     }
+                    // }
+                    // common_ops.alert(error.msg, callback);
+
+                     btn_target.removeClass("disabled");
                     var callback = null;
-                    if (res.code == -1) {
+                    // if (res.code == 200) {
                         callback = function () {
-                            window.location.href = window.location.href;
+                            window.location.href = common_ops.buildUrl("/");
                         }
-                    }
-                    common_ops.alert(error.msg, callback);
+                    // }
+                    common_ops.alert(res.msg, callback);
                 }
             });
         });

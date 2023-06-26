@@ -1,5 +1,10 @@
 # coding: utf-8
-from application import db
+from sqlalchemy import BigInteger, Column, DateTime, Integer, String
+from sqlalchemy.schema import FetchedValue
+from flask_sqlalchemy import SQLAlchemy
+
+
+db = SQLAlchemy()
 
 
 class User(db.Model):
